@@ -13,7 +13,6 @@
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
 class HashingProblems {
 
@@ -136,7 +135,22 @@ class HashingProblems {
        * ADD YOUR CODE HERE
        */
 
-      return -1;
+      //create a hashset and initialize count
+      HashSet<Integer> numberSet = new HashSet<>();
+      int count = 0;
+
+      //populate array
+      for (int num : numbers){
+          numberSet.add(num);
+      }
+      //iterate through array
+      for (int num : numbers){
+          //add to count if the difference between array elements is k
+          if (numberSet.contains(num - k)){
+              count++;
+          }
+      }
+      return count;
   }
 
 } /* end class HashingProblems */
