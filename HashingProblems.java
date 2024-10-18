@@ -17,7 +17,7 @@ import java.util.Set;
 
 class HashingProblems {
 
-    /*
+    /* Grant Smith Comp 272
      * Method getAverage()
      *
      * This method accepts two parameters. The first is a HashMap object, while the second
@@ -41,8 +41,27 @@ class HashingProblems {
          * returning 0.0/0.0 IS correct (which would return a non-number).
          */
 
-         return 0.0 / 0.0;
-  }
+        //initialize sum and count
+        double sum = 0;
+        int count = 0;
+
+        //scenario if array is empty
+        if (array.length == 0) {
+            return 0.0;
+        }
+
+        //get each key's value from the hashmap and add to the sum
+        for (int key : array) {
+                if (map.containsKey(key)) {
+                    sum += map.get(key);
+                    count++;
+
+            }
+
+        }
+        //calculate total
+        return (double) sum / count;
+    }
 
 
     /*
