@@ -81,7 +81,14 @@ class HashingProblems {
        * Hint: Consider iterating over the HashMap using the keySet method.
        */
 
+      //iterate through the hashmap
+      for (int key : map.keySet()){
 
+          //if key is odd, add its value to the array
+          if (key % 2 != 0){
+              result.add(map.get(key));
+          }
+      }
       return result;
   }
 
