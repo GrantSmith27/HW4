@@ -47,7 +47,7 @@ class HashingProblems {
 
         //scenario if array is empty
         if (array.length == 0) {
-            return 0.0;
+            return 0.0/0.0;
         }
 
         //get each key's value from the hashmap and add to the sum
@@ -59,7 +59,7 @@ class HashingProblems {
             }
 
         }
-        //calculate total
+        //calculate average
         return (double) sum / count;
     }
 
