@@ -79,6 +79,7 @@ import java.util.HashSet;
 
 
 /**
+ * Grant Smith comp 272
  * Class HashNode
  *
  * Node object representing a <Key, Value> pair stored in the Hash Map, elements
@@ -174,6 +175,7 @@ class myHashMap<K,V> {
     }
 
 
+
     /**
      * method: V get(K)
      *
@@ -231,6 +233,26 @@ class myHashMap<K,V> {
          * return value is returned the invoking function based on the remove outcome.
          */
 
+        int index = getBucketIndex(key);
+
+        //initialize head and previous nodes
+        HashNode<K, V> head = bucket.get(index);
+        HashNode<K, V> prev = null;
+
+        //traverse list
+        while (head !=null){
+            //if it stumbles upon the key, store the old value
+            if (head.key.equals(key)) {
+                V oldValue = head.value;
+                //remove the head with the key value
+                bucket.set(index, head.next);
+                //update the size
+                size--;
+                return oldValue;
+            }
+            prev = head;
+            head = head.next;
+        }
         return null;
     }
 
@@ -399,14 +421,21 @@ class myHashMap<K,V> {
 
     public V replace(K key, V val) {
 
-        /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME AT TOP OF FILE
-         *
-         * Make sure you return the proper value based on the outcome of this method's
-         * replace (see method's prologue above).
-         */
+        int index = getBucketIndex(key);
+        HashNode<K, V> head = bucket.get(index);
 
-        return val;
+        //traverse chain to find key
+        while(head !=null){
+            if (head.key.equals(key)){
+                //store the old value
+                V oldValue = head.value;
+                //replace value
+                head.value = val;
+                return oldValue;
+            }
+            head = head.next;
+        }
+        return null;
     }
 
     
@@ -427,13 +456,18 @@ class myHashMap<K,V> {
 
     public boolean replace(K key, V oldVal, V newVal) {
 
-        /*
-         * ADD YOUR CODE HERE
-         *
-         * This method should apply the precondition (aka, the Key already exists with the
-         * value 'oldval', and is so, it SHOULD call replace(K, V) for code reuse.
-         */
+        int index = getBucketIndex(key);
+        HashNode<K, V> head = bucket.get(index);
 
+        // traverse the chain to find key
+        while (head != null) {
+            if (head.key.equals(key) && head.value.equals(oldVal)) {
+                //replace with new value
+                head.value = newVal;
+                return true;
+            }
+            head = head.next;
+        }
         return false;
     }
 
